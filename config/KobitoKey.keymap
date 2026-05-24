@@ -8,28 +8,60 @@
     combos {
         compatible = "zmk,combos";
 
-        combo_eisu {
-            timeout-ms = <50>;
-            key-positions = <12 13>;
-            bindings = <&kp LANG2>;
-        };
-
-        combo_kana {
-            timeout-ms = <50>;
-            key-positions = <16 17>;
-            bindings = <&kp LANG1>;
-        };
-
         combo_esc {
             timeout-ms = <50>;
-            key-positions = <0 1>;
+            key-positions = <22 21>;
             bindings = <&kp ESC>;
         };
 
         combo_tab {
             timeout-ms = <50>;
-            key-positions = <10 11>;
+            key-positions = <11 12>;
             bindings = <&kp TAB>;
+        };
+    };
+
+    macros {
+        to_copymode: to_copymode {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&kp LC(G) &kp LEFT_BRACKET>;
+            label = "TO_COPYMODE";
+        };
+
+        paste: paste {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&kp LC(G) &kp EQUAL>;
+            label = "PASTE";
+        };
+
+        create_term: create_term {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&kp LC(G) &kp C>;
+            label = "CREATE_TERM";
+        };
+
+        kill_pane: kill_pane {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&kp LC(G) &kp X>;
+            label = "KILL_PANE";
+        };
+
+        next_term: next_term {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&kp LC(G) &kp N>;
+            label = "NEXT_TERM";
+        };
+
+        prev_term: prev_term {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&kp LC(G) &kp P>;
+            label = "PREV_TERM";
         };
     };
 
@@ -38,10 +70,10 @@
 
         default_layer {
             bindings = <
-&kp Q         &kp W     &kp E                 &kp R              &mt LEFT_COMMAND T  &mt RIGHT_COMMAND Y  &kp U        &kp I                &kp O      &kp P
-&kp A         &kp S     &kp D                 &kp F              &kp G               &kp H                &kp J        &kp K                &kp L      &kp RETURN
-&kp Z         &kp X     &kp C                 &mt LCTRL V        &kp B               &kp N                &mt RCTRL M  &kp COMMA            &kp DOT    &kp SLASH
-&lt 4 ESCAPE  &kp LALT  &mt LEFT_SHIFT SPACE  &lt 1 EXCLAMATION  &lt 2 GRAVE         &lt 2 EQUAL          &lt 1 MINUS  &mt RSHFT BACKSPACE  &kp RSHFT  &lt 4 TAB
+&kp Q         &kp W          &kp E                 &kp R              &mt LEFT_COMMAND T  &mt RIGHT_COMMAND Y  &kp U        &kp I                &kp O      &kp P
+&kp A         &kp S          &kp D                 &kp F              &kp G               &kp H                &kp J        &kp K                &kp L      &kp RETURN
+&kp Z         &kp X          &kp C                 &mt LCTRL V        &kp B               &kp N                &mt RCTRL M  &kp COMMA            &kp DOT    &kp SLASH
+&lt 4 ESCAPE  &kp LC(SPACE)  &mt LEFT_SHIFT SPACE  &lt 1 EXCLAMATION  &lt 2 GRAVE         &lt 2 EQUAL          &lt 1 MINUS  &mt RSHFT BACKSPACE  &kp RSHFT  &lt 4 TAB
             >;
         };
 
@@ -59,8 +91,8 @@
             label = "FUNCTION";
             bindings = <
 &bt BT_SEL 0   &kp LC(LS(TAB))  &kp LC(TAB)               &kp LG(LC(ESCAPE))  &kp LS(LG(NUMBER_5))  &kp PERIOD    &kp NUMBER_7  &kp NUMBER_8   &kp NUMBER_9  &kp NUMBER_0
-&kp LA(LG(C))  &kp LG(V)        &kp LG(C)                 &kp LG(SPACE)       &trans                &kp MINUS     &kp NUMBER_4  &kp NUMBER_5   &kp NUMBER_6  &trans
-&trans         &trans           &trans                    &trans              &kp LG(LS(V))         &kp NUMBER_0  &kp NUMBER_1  &kp NUMBER_2   &kp NUMBER_3  &trans
+&kp LA(LG(C))  &kp LG(V)        &kp LG(C)                 &kp LG(SPACE)       &trans                &kp MINUS     &kp NUMBER_4  &kp NUMBER_5   &kp NUMBER_6  &to_copymode
+&prev_term     &kill_pane       &create_term              &next_term          &kp LG(LS(V))         &kp NUMBER_0  &kp NUMBER_1  &kp NUMBER_2   &kp NUMBER_3  &paste
 &trans         &trans           &kp LG(LC(LS(NUMBER_4)))  &kp SPACE           &trans                &trans        &trans        &kp BACKSPACE  &trans        &trans
             >;
         };
@@ -77,10 +109,10 @@
 
         layer_4 {
             bindings = <
-&trans  &kp F7  &kp F8  &kp F9  &kp F10  &kp RA(RC(Y))  &kp RA(RC(U))  &kp RA(RC(I))  &kp RA(RC(O))  &trans
-&trans  &kp F4  &kp F5  &kp F6  &kp F11  &kp LEFT       &kp DOWN       &kp UP         &kp RIGHT      &kp RC(RA(RETURN))
-&trans  &kp F1  &kp F2  &kp F3  &kp F12  &kp RA(RC(N))  &kp RA(RC(Q))  &kp RA(RC(E))  &trans         &trans
-&trans  &trans  &trans  &trans  &trans   &trans         &trans         &trans         &trans         &trans
+&trans  &kp F7  &kp F8  &kp F9  &kp F10  &kp RA(RC(Y))  &kp RA(RC(U))  &kp RA(RC(I))  &kp RA(RC(O))   &trans
+&trans  &kp F4  &kp F5  &kp F6  &kp F11  &kp LEFT       &kp DOWN       &kp UP         &kp RIGHT       &kp RC(RA(RETURN))
+&trans  &kp F1  &kp F2  &kp F3  &kp F12  &kp RA(RC(N))  &kp RA(RC(Q))  &kp RA(RC(E))  &kp RA(RETURN)  &trans
+&trans  &trans  &trans  &trans  &trans   &trans         &trans         &trans         &trans          &trans
             >;
         };
     };
