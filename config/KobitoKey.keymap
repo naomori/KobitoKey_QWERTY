@@ -83,7 +83,7 @@
 &kp LS(NUMBER_1)  &kp LS(NUMBER_2)  &kp LS(NUMBER_3)  &kp LS(NUMBER_4)  &kp LS(NUMBER_5)   &kp RS(NUMBER_6)  &kp RS(NUMBER_7)  &kp RS(NUMBER_8)  &kp RS(NUMBER_9)  &kp RS(NUMBER_0)
 &kp COLON         &kp TILDE         &kp PLUS          &kp UNDERSCORE    &kp PIPE           &kp BACKSLASH     &kp MINUS         &kp EQUAL         &kp GRAVE         &kp SEMICOLON
 &kp LEFT_SHIFT    &trans            &trans            &trans            &kp DOUBLE_QUOTES  &kp SINGLE_QUOTE  &kp RIGHT_SHIFT   &kp LBKT          &kp RBKT          &kp RIGHT_SHIFT
-&trans            &trans            &kp SPACE         &trans            &trans             &kp BACKSPACE     &trans            &trans            &trans            &trans
+&trans            &trans            &kp SPACE         &trans            &trans             &trans            &trans            &kp BACKSPACE     &trans            &trans
             >;
         };
 
