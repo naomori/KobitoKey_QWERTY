@@ -16,8 +16,9 @@
 // roBaish の 43 キーとの違い
 //   クリック: 薬指の下（左＝左クリック、右＝右クリック）と、MOUSE の U・I・O
 //   スクロール: 専用のキーはない（左のボール）
-//   内側の4キー（` = ! -）: ! - は親指 外、` = は親指 内のタップ。H の左の長押し（⌥）は、通常のレイヤーにはない
-//   親指 外（TH1）と 中（TH2）のタップは 2026-11-17 に入れ替えた。いちばん押しやすい 中 に、よく使う Space・BS を置く
+//   内側の4キー（` = ! -）: ! - は親指 中、` = は親指 内のタップ。H の左の長押し（⌥）は、通常のレイヤーにはない
+//   親指 外（TH1）と 中（TH2）のタップは 2026-11-17 に入れ替え、同じ日に戻した（5 月の並び）。b・n を親指で押すことにして、
+//   親指の置き場が ! と b（右は - と n）の上になり、外がいちばん押しやすくなったため。外＝⇧/Space・⇧/BS、中＝記号/!・記号/-
 //   かな・英数: 専用のキーはない（S+D・K+L の combo）
 
 // 長押しの判定を roBaish にそろえる
@@ -165,9 +166,9 @@
     };
 
     behaviors {
-        // 親指 中（TH2）の Space・BS のキー。長押しで FUNCTION（記号）
-        // roBaish の TH2（⇧/Space・⇧/BS）と同じ判定: 次のキーを押して離すまで長押しにならない
-        // 速く打って、Space・BS を離す前に次の字を押しても、Space・BS のまま
+        // 親指 中（TH2）の !・- のキー。長押しで FUNCTION（記号）
+        // 次のキーを押して離すまで長押しにならない（Space・BS を 中 に置いていたときの判定のまま。2026-11-17）
+        // 速く打って、!・- を離す前に次の字を押しても、!・- のまま（ローマ字の「ー」のあとなど）
         lt_bal: lt_bal {
             compatible = "zmk,behavior-hold-tap";
             #binding-cells = <2>;
@@ -195,7 +196,7 @@
 &kp Q         &kp W      &kp E                 &kp R              &mt LEFT_COMMAND T  &mt RIGHT_COMMAND Y  &kp U        &kp I                &kp O      &kp P
 &kp A         &kp S      &kp D                 &kp F              &kp G               &kp H                &kp J        &kp K                &kp L      &kp RETURN
 &kp Z         &kp X      &kp C                 &mt LCTRL V        &kp B               &kp N                &mt RCTRL M  &kp COMMA            &kp DOT    &kp SLASH
-&lt 4 ESCAPE  &mkp LCLK  &mt LEFT_SHIFT EXCLAMATION  &lt_bal 1 SPACE  &lt 2 GRAVE         &lt 2 EQUAL          &lt_bal 1 BACKSPACE  &mt RSHFT MINUS  &mkp RCLK  &lt 4 TAB
+&lt 4 ESCAPE  &mkp LCLK  &mt LEFT_SHIFT SPACE  &lt_bal 1 EXCLAMATION  &lt 2 GRAVE         &lt 2 EQUAL          &lt_bal 1 MINUS  &mt RSHFT BACKSPACE  &mkp RCLK  &lt 4 TAB
             >;
         };
 
@@ -204,7 +205,7 @@
 &kp LS(N1)      &kp LS(N2)      &kp LS(N3)        &kp LS(N4)      &kp LS(N5)         &kp RS(N6)        &kp RS(N7)       &kp RS(N8)     &kp RS(N9)  &kp RS(N0)
 &kp COLON       &kp TILDE       &kp PLUS          &kp UNDERSCORE  &kp PIPE           &kp BACKSLASH     &kp MINUS        &kp EQUAL      &kp GRAVE   &kp SEMICOLON
 &kp LEFT_SHIFT  &kp LEFT_SHIFT  &kp LEFT_COMMAND  &trans          &kp DOUBLE_QUOTES  &kp SINGLE_QUOTE  &kp RIGHT_SHIFT  &kp LBKT       &kp RBKT    &kp RIGHT_SHIFT
-&trans          &trans          &trans            &kp SPACE       &lt_slow 2 GRAVE   &lt_slow 2 EQUAL  &kp BACKSPACE    &trans         &trans      &trans
+&trans          &trans          &kp SPACE         &trans          &lt_slow 2 GRAVE   &lt_slow 2 EQUAL  &trans           &kp BACKSPACE  &trans      &trans
             >;
         };
 
@@ -233,7 +234,7 @@
 &kp LCTRL  &kp F7          &kp F8               &kp F9                &kp F10         &kp RA(RC(Y))  &kp RA(RC(U))  &kp RA(RC(I))  &kp RA(RC(O))   &kp RCTRL
 &trans     &kp F4          &kp F5               &kp F6                &kp F11         &kp LEFT       &kp DOWN       &kp UP         &kp RIGHT       &kp RC(RA(RETURN))
 &trans     &kp F1          &kp F2               &kp F3                &kp F12         &kp RA(RC(N))  &kp RA(RC(Q))  &kp RA(RC(E))  &trans          &trans
-&trans     &kp LA(RETURN)  &kp LA(LEFT_COMMAND)  &mt LA(LCTRL) SPACE  &kp LEFT_SHIFT  &kp RIGHT_ALT  &kp BACKSPACE  &trans         &kp RA(RETURN)  &trans
+&trans     &kp LA(RETURN)  &mt LA(LCTRL) SPACE  &kp LA(LEFT_COMMAND)  &kp LEFT_SHIFT  &kp RIGHT_ALT  &trans         &kp BACKSPACE  &kp RA(RETURN)  &trans
             >;
         };
 
